@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VPN Subscription</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta http-equiv="x-ua-compatible" content="IE=Edge">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css">
+
+  <style>
+  body{--bg-color:var(--tg-theme-bg-color, #f8f8f9);font-family:Roboto,sans-serif;background-color:var(--bg-color);color:var(--tg-theme-text-color,#000);font-size:14px;margin:0;padding:0;color-scheme:var(--tg-color-scheme);text-align:center}main{padding:20px;box-sizing:border-box}button{display:inline-flex;align-items:center;justify-content:center;font-size:14px;padding:10px 20px;border:none;border-radius:8px;background-color:#08c;color:#fff;cursor:pointer;box-sizing:border-box;width:auto;max-width:200px}button i{font-size:18px;margin-right:8px}button[disabled]{opacity:.6;cursor:auto;pointer-events:none}button.close_btn{position:absolute;left:0;right:0;bottom:0;border-radius:0;margin:0;padding:16px 20px;text-transform:uppercase}input[type=number]{display:block;font-size:32px;font-weight:700;width:70%;padding:12px 20px;margin:15px 0;border:1px solid #08c;background-color:#fff;border-radius:10px;color:#000;text-align:center}input[type=number]:-ms-input-placeholder,input[type=number]::-moz-placeholder,input[type=number]::-webkit-input-placeholder{color:#bbb;font-size:24px;font-weight:400}.page{display:none}.page.active{display:block}.section{padding:15px;background-color:var(--bg-color,#fff)}@media (max-width:768px){body{font-size:12px}button{margin:5px 0;width:100%}input[type=number]{width:90%}.section{padding:20px}}@media (max-width:480px){h1,h2,p{font-size:18px}button i{font-size:20px}}.button.back-button{display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;background-color:#08c;color:#fff;border-radius:10px;font-size:16px;cursor:pointer;width:auto;max-width:100%}.button.back-button i{font-size:18px;margin-right:10px}.download-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 25px;background-color:#08c;color:#fff;border-radius:10px;font-size:18px;text-decoration:none;cursor:pointer;margin:15px 0;box-sizing:border-box;width:auto;max-width:300px}.download-btn:hover{background-color:rgba(0,136,204,.8)}.download-btn i.svg-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-right:10px;fill:currentColor}.img{max-width:100%;height:auto;display:block;margin:0 auto}.small-text{font-size:15px;color:#888}#toast{visibility:hidden;min-width:250px;margin:auto;background-color:#333;color:#fff;text-align:center;border-radius:5px;padding:10px;position:fixed;z-index:1;top:30px;left:50%;transform:translateX(-50%);font-size:16px;white-space:nowrap}#toast.show{visibility:visible;animation:fadein .5s,fadeout .5s 2.5s}@keyframes fadein{from{opacity:0}to{opacity:1}}@keyframes fadeout{from{opacity:1}to{opacity:0}}.spolier-btn{display:inline-flex;align-items:center;justify-content:center;font-size:14px;padding:10px 20px;border:none;border-radius:10px;background-color:#08c;color:#fff;cursor:pointer;box-sizing:border-box}.spolier-btn i{font-size:18px;margin-right:8px}.spolier-btn:hover{background-color:rgba(0,136,204,.8)}.link-input{margin-bottom:10px}.copy-button{margin-left:10px}.qr-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background-color:#fff;padding:10px 25px 25px 25px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);display:none;z-index:9999}.qr-close-button{text-align:right;margin-bottom:5px;margin-right:-15px}
+ </style>
+
+</head>
+<body>
+  <main>
+  
+    <!-- Toast Notification -->
+    <div id="toast">Ключ успешно скопирован!</div>
+  
+    <!-- First Page: Greeting and Device Selection -->
+    <section id="pageGreeting" class="page active">
+      <h2>Ключ: {% if user.status.value == 'active' %}✅ Активен{% elif user.status.value == 'limited' %}❌ Ограничен{% elif user.status.value == 'expired' %}❌ Истёк{% elif user.status.value == 'disabled' %}❌ Отключен{% endif %}</h2>
+      <p>ID: {{ user.username }}</p>
+<p>
+  <button class="spolier-btn" onclick="toggleSpoiler(this)">
+    <i class="fas fa-key"></i> Мои ключи
+  </button>
+</p>
+<p id="spoiler-content" style="display: none; background-color: var(--bg-color); padding: 10px; border-radius: 10px; border: 1px solid rgb(17, 24, 39);">
+  <strong>VLESS ключи:</strong> 
+{% if user.status == 'active' %}
+        {% for link in user.links %}
+            <input type="text" value="{{ link }}" readonly>
+        {% endfor %}
+    {% endif %}
+</p>
+
+      <h2>Выберите устройство для подключения к VPN 👇</h2>
+	  <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <button onclick="navigateTo('pageAndroid')">
+          <i class="fab fa-android"></i> Android
+        </button>
+        <button onclick="navigateTo('pageiOS')">
+          <i class="fab fa-apple"></i> iPhone, MacOS
+        </button>
+        <button onclick="navigateTo('pageWindows')">
+          <i class="fab fa-windows"></i> Windows
+        </button>
+      </div>
+    </section>
+
+    <!-- Android Page -->
+    <section id="pageAndroid" class="page">
+      <button onclick="navigateTo('pageGreeting')" class="back-button"><i class="fas fa-arrow-left"></i> Настроить другое устройство</button>
+      <h1>Подключение VPN на телефоне Android</h1>
+      <p>Шаг 1. Скачать в Google Play приложение.</p>
+      <a href="https://play.google.com/store/apps/details?id=com.v2raytun.android" rel="noopener noreferrer" target="_blank" class="download-btn" onclick="Download()">
+        <i class="svg-icon">
+		<svg xmlns="http://www.w3.org/2000/svg"  height="18px" width="18px" viewBox="0 0 448 512"  fill="currentColor">
+		<!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+		<path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+		</svg>
+		</i>
+		Скачать в Google Play
+      </a>
+	  <p>Шаг 2. Импортировать ключи в приложение</p>
+      <a href="v2raytun://install-sub?url={{ user.subscription_url }}" rel="noopener noreferrer" target="_blank" class="download-btn">
+        👉 Добавить ключи 👈
+      </a>
+	  <p>Шаг 3. Выбрать страну и включить VPN</p>
+	  <p>Готово ✅</p>
+	  <p class="small-text">Если случаются трудности с подключением, напишите нам в чат поддержки, мы поможем Вам настроить приложение.</p>
+	  <button class="download-btn" onclick="supportButtonAction();"><i class="fas fa-arrow-right"></i> Получить помощь с установкой</button>
+    </section>
+
+    <!-- iOS Page -->
+    <section id="pageiOS" class="page">
+      <button onclick="navigateTo('pageGreeting')" class="back-button"><i class="fas fa-arrow-left"></i> Настроить другое устройство</button>
+      <h1>Подключение на устройстве iOS (iPhone, iPad, MacOS)</h1>
+      <p>Шаг 1. Установить приложение</p>
+      <a href="https://apps.apple.com/us/app/v2raytun/id6476628951" rel="noopener noreferrer" target="_blank" class="download-btn" onclick="Download()">
+         <i class="svg-icon">
+		 <svg xmlns="http://www.w3.org/2000/svg"  height="18px" width="18px" viewBox="0 0 448 512"  fill="currentColor">
+			<!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+			<path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+		</svg>
+		</i>
+		Скачать в AppStore
+      </a>
+      <p>Шаг 2. Нажать кнопку Скопировать ключи</p>
+      <button type="button" class="download-btn" onclick="copyToClipboard('{{ user.subscription_url }}');">👉 Скопировать ключи 👈</button>
+	  <p>Шаг 3. Выбрать страну и включить VPN</p>
+	  <p>Готово ✅</p>
+	  <p class="small-text">Если случаются трудности с подключением, напишите нам в чат поддержки, мы поможем Вам настроить приложение.</p>
+	  <button class="download-btn" onclick="supportButtonAction();"><i class="fas fa-arrow-right"></i> Получить помощь с установкой</button>
+    </section>
+
+    <!-- Windows Page -->
+    <section id="pageWindows" class="page">
+      <button onclick="navigateTo('pageGreeting')" class="back-button"><i class="fas fa-arrow-left"></i> Настроить другое устройство</button>
+      <h2>Подключение VPN на Windows</h2>
+      <p>Шаг 1. Установить приложение</p>
+      <a href="https://apps.microsoft.com/detail/9pdfnl3qv2s5" rel="noopener noreferrer" target="_blank" class="download-btn" onclick="Download()">
+        <i class="svg-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" height="18px" width="18px" viewBox="0 0 448 512" fill="currentColor">
+            <path d="M0 93.7V246h204.8V48L0 93.7zM224.6 48V246H448V0L224.6 48zM0 265.3V418.6l204.8 45.6V265.3H0zM224.6 265.3V464L448 512V265.3H224.6z" />
+          </svg>
+        </i>
+        Скачать в Microsoft Apps
+      </a>
+      <p>Шаг 2. Нажать кнопку Скопировать ключи</p>
+      <button type="button" class="download-btn" onclick="copyToClipboard('{{ user.subscription_url }}');">👉 Скопировать ключи 👈</button>
+	  <p>Шаг 3. Добавить ключи в приложение</p>
+	  <p><img class="img" src="https://i.postimg.cc/RhxThRKg/2024-11-20-112421.png"></p>
+	  <p>Шаг 4. Включить VPN и выбрать страну</p>
+	  <p><img class="img" src="https://i.postimg.cc/7YvRJ1q8/2024-11-20-111610.png"></p>
+	  <p>Готово ✅</p>
+	  <p class="small-text">Если случаются трудности с подключением, напишите нам в чат поддержки, мы поможем Вам настроить приложение.</p>
+	  <button class="download-btn" onclick="supportButtonAction();"><i class="fas fa-arrow-right"></i> Получить помощь с установкой</button>
+    </section>
+	
+	<!-- Unknown Device Page -->
+<section id="pageUnknown" class="page">
+  <h2>Ваше устройство не распознано</h2>
+  <p>К сожалению, мы не смогли автоматически определить тип вашего устройства. Вы можете:</p>
+  <ul style="text-align: left; display: inline-block;">
+    <li>Попробовать выбрать устройство вручную на главной странице.</li>
+    <li>Связаться с нашей службой поддержки для получения инструкции.</li>
+  </ul>
+  <button onclick="navigateTo('pageGreeting')" class="back-button"><i class="fas fa-arrow-left"></i> Вернуться на главную</button>
+  <button class="download-btn" onclick="supportButtonAction();">
+    <i class="fas fa-headset"></i> Связаться с поддержкой
+  </button>
+</section>
+  </main>
+
+  <script>
+  
+// URL службы поддержки через параметр
+const supportUrl = "https://t.me/"; // Замените URL при необходимости
+
+function supportButtonAction() {
+  // Открыть ссылку в новой вкладке или модальном окне
+  window.open(supportUrl, '_blank');
+}
+  
+    // Функция копирования ссылки с уведомлением
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(function() {
+        // Показать уведомление
+        var toast = document.getElementById('toast');
+        toast.classList.add('show');
+        // Скрыть уведомление через 3 секунды
+        setTimeout(function() {
+          toast.classList.remove('show');
+        }, 3000);
+      }).catch(function() {
+        alert("Не удалось скопировать ключ.");
+      });
+    }
+	
+  // Функция для переключения видимости страницы
+function navigateTo(pageId) {
+  // Удаляем класс 'active' со всех элементов с классом 'page'
+  document.querySelectorAll('.page').forEach(function(page) {
+    page.classList.remove('active');
+  });
+  
+  // Добавляем класс 'active' странице с соответствующим id
+  document.getElementById(pageId).classList.add('active');
+}
+
+// Ожидаем загрузку контента страницы
+document.addEventListener("DOMContentLoaded", function() {
+  // Получаем данные о платформе пользователя
+  var userAgent = window.navigator.userAgent,
+      platform = window.navigator.platform,
+      macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+      windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+      iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+      os = null;
+
+  // Определяем операционную систему на основе платформы
+  if (macosPlatforms.indexOf(platform) !== -1) {
+    os = 'macOS';
+  } else if (iosPlatforms.indexOf(platform) !== -1) {
+    os = 'iOS';
+  } else if (windowsPlatforms.indexOf(platform) !== -1) {
+    os = 'Windows';
+  } else if (/Android/.test(userAgent)) {
+    os = 'Android';
+  } else if (!os && /Linux/.test(platform)) {
+    os = 'Linux';
+  }
+
+  // Переход на страницу, соответствующую ОС
+  switch (os) {
+    case 'macOS':
+      navigateTo('pageMac');
+      break;
+    case 'iOS':
+      navigateTo('pageiOS');
+      break;
+    case 'Windows':
+      navigateTo('pageWindows');
+      break;
+    case 'Android':
+      navigateTo('pageAndroid');
+      break;
+    case 'Linux':
+      navigateTo('pageLinux');  // Для Linux, если такая страница предусмотрена
+      break;
+    default:
+      navigateTo('pageUnknown'); // Переход на страницу для неизвестной ОС
+  }
+});
+
+// Функция для отображения сообщения при скачивании
+function Download() {
+  alert("\tℹ️После скачивания,\n\tвернитесь из магазина\n\tна эту страницу\n\tи нажмите кнопку 👉 ДОБАВИТЬ КЛЮЧИ 👈");
+}
+
+// Работа с Telegram WebApp
+let tg = window.Telegram.WebApp; // Получаем объект webapp телеграма 
+tg.expand(); // Расширяем приложение на весь экран
+
+// Настройка основной кнопки и действия при ее нажатии
+Telegram.WebApp.MainButton.setParams({
+  text: 'Закрыть',
+  is_visible: true
+}).onClick(tg.close); // Кнопка закрытия приложения
+
+// Функция для отображения/скрытия спойлера с ключами
+function toggleSpoiler(button) {
+  const spoilerContent = document.getElementById('spoiler-content');
+  
+  // Проверяем текущее состояние спойлера и переключаем его
+  if (spoilerContent.style.display === 'none') {
+    spoilerContent.style.display = 'block';
+    button.textContent = 'Скрыть ключи';
+  } else {
+    spoilerContent.style.display = 'none';
+    button.innerHTML = '<i class="fas fa-key"></i> Мои ключи';
+  }
+}
+	  </script>
+</body>
+</html>
