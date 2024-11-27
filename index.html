@@ -9,17 +9,15 @@
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css">
 
   <style>
-  body{--bg-color:var(--tg-theme-bg-color, #f8f8f9);font-family:Roboto,sans-serif;background-color:var(--bg-color);color:var(--tg-theme-text-color,#000);font-size:14px;margin:0;padding:0;color-scheme:var(--tg-color-scheme);text-align:center}main{padding:20px;box-sizing:border-box}button{display:inline-flex;align-items:center;justify-content:center;font-size:14px;padding:10px 20px;border:none;border-radius:8px;background-color:#08c;color:#fff;cursor:pointer;box-sizing:border-box;width:auto;max-width:200px}button i{font-size:18px;margin-right:8px}button[disabled]{opacity:.6;cursor:auto;pointer-events:none}button.close_btn{position:absolute;left:0;right:0;bottom:0;border-radius:0;margin:0;padding:16px 20px;text-transform:uppercase}input[type=number]{display:block;font-size:32px;font-weight:700;width:70%;padding:12px 20px;margin:15px 0;border:1px solid #08c;background-color:#fff;border-radius:10px;color:#000;text-align:center}input[type=number]:-ms-input-placeholder,input[type=number]::-moz-placeholder,input[type=number]::-webkit-input-placeholder{color:#bbb;font-size:24px;font-weight:400}.page{display:none}.page.active{display:block}.section{padding:15px;background-color:var(--bg-color,#fff)}@media (max-width:768px){body{font-size:12px}button{margin:5px 0;width:100%}input[type=number]{width:90%}.section{padding:20px}}@media (max-width:480px){h1,h2,p{font-size:18px}button i{font-size:20px}}.button.back-button{display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;background-color:#08c;color:#fff;border-radius:10px;font-size:16px;cursor:pointer;width:auto;max-width:100%}.button.back-button i{font-size:18px;margin-right:10px}.download-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 25px;background-color:#08c;color:#fff;border-radius:10px;font-size:18px;text-decoration:none;cursor:pointer;margin:15px 0;box-sizing:border-box;width:auto;max-width:300px}.download-btn:hover{background-color:rgba(0,136,204,.8)}.download-btn i.svg-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-right:10px;fill:currentColor}.img{max-width:100%;height:auto;display:block;margin:0 auto}.small-text{font-size:15px;color:#888}#toast{visibility:hidden;min-width:250px;margin:auto;background-color:#333;color:#fff;text-align:center;border-radius:5px;padding:10px;position:fixed;z-index:1;top:30px;left:50%;transform:translateX(-50%);font-size:16px;white-space:nowrap}#toast.show{visibility:visible;animation:fadein .5s,fadeout .5s 2.5s}@keyframes fadein{from{opacity:0}to{opacity:1}}@keyframes fadeout{from{opacity:1}to{opacity:0}}.spolier-btn{display:inline-flex;align-items:center;justify-content:center;font-size:14px;padding:10px 20px;border:none;border-radius:10px;background-color:#08c;color:#fff;cursor:pointer;box-sizing:border-box}.spolier-btn i{font-size:18px;margin-right:8px}.spolier-btn:hover{background-color:rgba(0,136,204,.8)}.link-input{margin-bottom:10px}.copy-button{margin-left:10px}.qr-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background-color:#fff;padding:10px 25px 25px 25px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);display:none;z-index:9999}.qr-close-button{text-align:right;margin-bottom:5px;margin-right:-15px}
- </style>
+  body{--bg-color:var(--tg-theme-bg-color, #f8f8f9);font-family:Roboto,sans-serif;background-color:var(--bg-color);color:var(--tg-theme-text-color,#000);font-size:14px;margin:0;padding:0;color-scheme:var(--tg-color-scheme);text-align:center}main{padding:20px;box-sizing:border-box}button{display:inline-flex;align-items:center;justify-content:center;font-size:14px;padding:10px 20px;border:none;border-radius:8px;background-color:#08c;color:#fff;cursor:pointer;box-sizing:border-box;width:auto;max-width:200px}button i{font-size:18px;margin-right:8px}button[disabled]{opacity:.6;cursor:auto;pointer-events:none}button.close_btn{position:absolute;left:0;right:0;bottom:0;border-radius:0;margin:0;padding:16px 20px;text-transform:uppercase}input[type=number]{display:block;font-size:32px;font-weight:700;width:70%;padding:12px 20px;margin:15px 0;border:1px solid #08c;background-color:#fff;border-radius:10px;color:#000;text-align:center}input[type=number]:-ms-input-placeholder,input[type=number]::-moz-placeholder,input[type=number]::-webkit-input-placeholder{color:#bbb;font-size:24px;font-weight:400}.page{display:none}.page.active{display:block}.section{padding:15px;background-color:var(--bg-color,#fff)}@media (max-width:768px){body{font-size:12px}button{margin:5px 0;width:100%}input[type=number]{width:90%}.section{padding:20px}}@media (max-width:480px){h1,h2,p{font-size:18px}button i{font-size:20px}}.button.back-button{display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;background-color:#08c;color:#fff;border-radius:10px;font-size:16px;cursor:pointer;width:auto;max-width:100%}.button.back-button i{font-size:18px;margin-right:10px}.download-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 25px;background-color:#08c;color:#fff;border-radius:10px;font-size:18px;text-decoration:none;cursor:pointer;margin:15px 0;box-sizing:border-box;width:auto;max-width:300px}.download-btn:hover{background-color:rgba(0,136,204,.8)}.download-btn i.svg-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-right:10px;fill:currentColor}.img{width:100%;max-width:500px;margin-top:20px;border-radius:8px;}.small-text{font-size:15px;color:#888}#toast{visibility:hidden;min-width:250px;margin:auto;background-color:#333;color:#fff;text-align:center;border-radius:5px;padding:10px;position:fixed;z-index:1;top:30px;left:50%;transform:translateX(-50%);font-size:16px;white-space:nowrap}#toast.show{visibility:visible;animation:fadein .5s,fadeout .5s 2.5s}@keyframes fadein{from{opacity:0}to{opacity:1}}@keyframes fadeout{from{opacity:1}to{opacity:0}}.spolier-btn{display:inline-flex;align-items:center;justify-content:center;font-size:14px;padding:10px 20px;border:none;border-radius:10px;background-color:#08c;color:#fff;cursor:pointer;box-sizing:border-box}.spolier-btn i{font-size:18px;margin-right:8px}.spolier-btn:hover{background-color:rgba(0,136,204,.8)}.link-input{margin-bottom:10px}.copy-button{margin-left:10px}.qr-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background-color:#fff;padding:10px 25px 25px 25px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);display:none;z-index:9999}.qr-close-button{text-align:right;margin-bottom:5px;margin-right:-15px}
+</style>
 
 </head>
 <body>
   <main>
-  
-    <!-- Toast Notification -->
+
     <div id="toast">Ключ успешно скопирован!</div>
   
-    <!-- First Page: Greeting and Device Selection -->
     <section id="pageGreeting" class="page active">
       <h2>Ключ: {% if user.status.value == 'active' %}✅ Активен{% elif user.status.value == 'limited' %}❌ Ограничен{% elif user.status.value == 'expired' %}❌ Истёк{% elif user.status.value == 'disabled' %}❌ Отключен{% endif %}</h2>
       <p>ID: {{ user.username }}</p>
@@ -32,7 +30,7 @@
   <strong>VLESS ключи:</strong> 
 {% if user.status == 'active' %}
         {% for link in user.links %}
-            <input type="text" value="{{ link }}" readonly>
+            <input type="text" value="{{ link }}" readonly class="styled-input">
         {% endfor %}
     {% endif %}
 </p>
@@ -53,8 +51,7 @@
 
     <!-- Android Page -->
     <section id="pageAndroid" class="page">
-      <button onclick="navigateTo('pageGreeting')" class="back-button"><i class="fas fa-arrow-left"></i> Настроить другое устройство</button>
-      <h1>Подключение VPN на телефоне Android</h1>
+      <h2>Подключение VPN на телефоне Android</h2>
       <p>Шаг 1. Скачать в Google Play приложение.</p>
       <a href="https://play.google.com/store/apps/details?id=com.v2raytun.android" rel="noopener noreferrer" target="_blank" class="download-btn" onclick="Download()">
         <i class="svg-icon">
@@ -66,19 +63,17 @@
 		Скачать в Google Play
       </a>
 	  <p>Шаг 2. Импортировать ключи в приложение</p>
-      <a href="v2raytun://install-sub?url={{ user.subscription_url }}" rel="noopener noreferrer" target="_blank" class="download-btn">
+      <a href="https://site.com/redirect?subscription_url=v2raytun://install-sub?url={{ user.subscription_url }}" rel="noopener noreferrer" target="_blank" class="download-btn">
         👉 Добавить ключи 👈
       </a>
-	  <p>Шаг 3. Выбрать страну и включить VPN</p>
 	  <p>Готово ✅</p>
-	  <p class="small-text">Если случаются трудности с подключением, напишите нам в чат поддержки, мы поможем Вам настроить приложение.</p>
-	  <button class="download-btn" onclick="supportButtonAction();"><i class="fas fa-arrow-right"></i> Получить помощь с установкой</button>
+	  <p class="small-text">Если случаются трудности с подключением или есть другие вопросы, напишите администратору. (GMT+)</p>
+	  <button class="download-btn" onclick="supportButtonAction();"><i class="fas fa-arrow-right"></i> Получить помощь </button>
     </section>
 
     <!-- iOS Page -->
     <section id="pageiOS" class="page">
-      <button onclick="navigateTo('pageGreeting')" class="back-button"><i class="fas fa-arrow-left"></i> Настроить другое устройство</button>
-      <h1>Подключение на устройстве iOS (iPhone, iPad, MacOS)</h1>
+      <h2>Подключение на устройстве iOS (iPhone, iPad, MacOS)</h2>
       <p>Шаг 1. Установить приложение</p>
       <a href="https://apps.apple.com/us/app/v2raytun/id6476628951" rel="noopener noreferrer" target="_blank" class="download-btn" onclick="Download()">
          <i class="svg-icon">
@@ -89,17 +84,15 @@
 		</i>
 		Скачать в AppStore
       </a>
-      <p>Шаг 2. Нажать кнопку Скопировать ключи</p>
-      <button type="button" class="download-btn" onclick="copyToClipboard('{{ user.subscription_url }}');">👉 Скопировать ключи 👈</button>
-	  <p>Шаг 3. Выбрать страну и включить VPN</p>
+      <p>Шаг 2. Нажать кнопку Добавить ключи</p>
+	  <a href="https://site.com/redirect?subscription_url=v2raytun://install-sub?url={{ user.subscription_url }}" rel="noopener noreferrer" target="_blank" class="download-btn">👉 Добавить ключи 👈</a>
 	  <p>Готово ✅</p>
-	  <p class="small-text">Если случаются трудности с подключением, напишите нам в чат поддержки, мы поможем Вам настроить приложение.</p>
-	  <button class="download-btn" onclick="supportButtonAction();"><i class="fas fa-arrow-right"></i> Получить помощь с установкой</button>
+	  <p class="small-text">Если случаются трудности с подключением или есть другие вопросы, напишите администратору. (GMT+)</p>
+	  <button class="download-btn" onclick="supportButtonAction();"><i class="fas fa-arrow-right"></i> Получить помощь</button>
     </section>
 
     <!-- Windows Page -->
     <section id="pageWindows" class="page">
-      <button onclick="navigateTo('pageGreeting')" class="back-button"><i class="fas fa-arrow-left"></i> Настроить другое устройство</button>
       <h2>Подключение VPN на Windows</h2>
       <p>Шаг 1. Установить приложение</p>
       <a href="https://apps.microsoft.com/detail/9pdfnl3qv2s5" rel="noopener noreferrer" target="_blank" class="download-btn" onclick="Download()">
@@ -110,15 +103,12 @@
         </i>
         Скачать в Microsoft Apps
       </a>
-      <p>Шаг 2. Нажать кнопку Скопировать ключи</p>
-      <button type="button" class="download-btn" onclick="copyToClipboard('{{ user.subscription_url }}');">👉 Скопировать ключи 👈</button>
-	  <p>Шаг 3. Добавить ключи в приложение</p>
-	  <p><img class="img" src="https://i.postimg.cc/RhxThRKg/2024-11-20-112421.png"></p>
-	  <p>Шаг 4. Включить VPN и выбрать страну</p>
-	  <p><img class="img" src="https://i.postimg.cc/7YvRJ1q8/2024-11-20-111610.png"></p>
-	  <p>Готово ✅</p>
-	  <p class="small-text">Если случаются трудности с подключением, напишите нам в чат поддержки, мы поможем Вам настроить приложение.</p>
-	  <button class="download-btn" onclick="supportButtonAction();"><i class="fas fa-arrow-right"></i> Получить помощь с установкой</button>
+      <p>Шаг 2. Нажать кнопку Добавить ключи</p>
+      <a href="https://site.com/redirect?subscription_url=hiddify://install-sub/?url={{ user.subscription_url }}" rel="noopener noreferrer" target="_blank" class="download-btn">
+	  👉 Добавить ключи 👈</a>
+	  <p>✅ Готово</p>
+	  <p class="small-text">Если случаются трудности с подключением или есть другие вопросы, напишите администратору. (GMT+)</p>
+	  <button class="download-btn" onclick="supportButtonAction();"><i class="fas fa-arrow-right"></i> Получить помощь</button>
     </section>
 	
 	<!-- Unknown Device Page -->
@@ -137,22 +127,21 @@
   </main>
 
   <script>
-  
-// URL службы поддержки через параметр
+
 const supportUrl = "https://t.me/"; // Замените URL при необходимости
 
 function supportButtonAction() {
-  // Открыть ссылку в новой вкладке или модальном окне
+
   window.open(supportUrl, '_blank');
 }
   
-    // Функция копирования ссылки с уведомлением
+
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(function() {
-        // Показать уведомление
+
         var toast = document.getElementById('toast');
         toast.classList.add('show');
-        // Скрыть уведомление через 3 секунды
+        
         setTimeout(function() {
           toast.classList.remove('show');
         }, 3000);
@@ -161,20 +150,20 @@ function supportButtonAction() {
       });
     }
 	
-  // Функция для переключения видимости страницы
+
 function navigateTo(pageId) {
-  // Удаляем класс 'active' со всех элементов с классом 'page'
+
   document.querySelectorAll('.page').forEach(function(page) {
     page.classList.remove('active');
   });
   
-  // Добавляем класс 'active' странице с соответствующим id
+  
   document.getElementById(pageId).classList.add('active');
 }
 
-// Ожидаем загрузку контента страницы
+
 document.addEventListener("DOMContentLoaded", function() {
-  // Получаем данные о платформе пользователя
+
   var userAgent = window.navigator.userAgent,
       platform = window.navigator.platform,
       macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
@@ -182,7 +171,6 @@ document.addEventListener("DOMContentLoaded", function() {
       iosPlatforms = ['iPhone', 'iPad', 'iPod'],
       os = null;
 
-  // Определяем операционную систему на основе платформы
   if (macosPlatforms.indexOf(platform) !== -1) {
     os = 'macOS';
   } else if (iosPlatforms.indexOf(platform) !== -1) {
@@ -195,10 +183,9 @@ document.addEventListener("DOMContentLoaded", function() {
     os = 'Linux';
   }
 
-  // Переход на страницу, соответствующую ОС
   switch (os) {
     case 'macOS':
-      navigateTo('pageMac');
+      navigateTo('pageiOS');
       break;
     case 'iOS':
       navigateTo('pageiOS');
@@ -210,33 +197,31 @@ document.addEventListener("DOMContentLoaded", function() {
       navigateTo('pageAndroid');
       break;
     case 'Linux':
-      navigateTo('pageLinux');  // Для Linux, если такая страница предусмотрена
+      navigateTo('pageUnknown');
       break;
     default:
-      navigateTo('pageUnknown'); // Переход на страницу для неизвестной ОС
+      navigateTo('pageUnknown');
   }
 });
 
 // Функция для отображения сообщения при скачивании
 function Download() {
-  alert("\tℹ️После скачивания,\n\tвернитесь из магазина\n\tна эту страницу\n\tи нажмите кнопку 👉 ДОБАВИТЬ КЛЮЧИ 👈");
+  alert("\tℹ️После установки приложения обязательно вернитесь в бота на эту страницу и выполните Шаг 2 для завершеня настройки!");
 }
 
-// Работа с Telegram WebApp
-let tg = window.Telegram.WebApp; // Получаем объект webapp телеграма 
-tg.expand(); // Расширяем приложение на весь экран
 
-// Настройка основной кнопки и действия при ее нажатии
+let tg = window.Telegram.WebApp;
+tg.expand();
+
+
 Telegram.WebApp.MainButton.setParams({
   text: 'Закрыть',
   is_visible: true
-}).onClick(tg.close); // Кнопка закрытия приложения
+}).onClick(tg.close);
 
-// Функция для отображения/скрытия спойлера с ключами
 function toggleSpoiler(button) {
   const spoilerContent = document.getElementById('spoiler-content');
   
-  // Проверяем текущее состояние спойлера и переключаем его
   if (spoilerContent.style.display === 'none') {
     spoilerContent.style.display = 'block';
     button.textContent = 'Скрыть ключи';
